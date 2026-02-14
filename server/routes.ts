@@ -31,24 +31,22 @@ export async function registerRoutes(
   });
 
   // Seed data
-  const existingAds = await storage.getAds();
-  if (existingAds.length === 0) {
-    console.log("Seeding database...");
-    await storage.createAd({
-      name: "Higher Math",
-      cls: "১০ম শ্রেণী",
-      location: "Dhaka",
-      phone: "01711223344",
-      isPremium: true
-    });
-    await storage.createAd({
-      name: "Physics",
-      cls: "৯ম শ্রেণী",
-      location: "Chittagong",
-      phone: "01811223344",
-      isPremium: false
-    });
-    console.log("Seeding complete.");
+  try {
+    const existingAds = await storage.getAds();
+    if (existingAds.length === 0) {
+      console.log("Seeding database...");
+      await storage.createAd({
+        itemName: "Higher Math",
+        category: "বই",
+        type: "বিনিময়",
+        location: "Dhaka",
+        phone: "01711223344",
+        isPremium: true
+      });
+      console.log("Seeding complete.");
+    }
+  } catch (err) {
+    console.error("Seeding failed:", err);
   }
 
   return httpServer;

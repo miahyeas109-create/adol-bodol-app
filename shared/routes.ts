@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { insertAdSchema, ads } from './schema';
 
-// Export schema/types for frontend convenience if they import from routes
+// Export schema/types for frontend convenience
 export { insertAdSchema, ads };
 export type { InsertAd, Ad } from './schema';
 
